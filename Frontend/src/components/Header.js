@@ -10,7 +10,7 @@ const Header = () => {
           <LinkContainer to = '/'>
           <Navbar.Brand>Shop It</Navbar.Brand>
           </LinkContainer>
-          <Navbar.Brand href='/'>Shop It</Navbar.Brand>
+
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='ml-auto'>

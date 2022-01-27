@@ -3,12 +3,25 @@
   "version": "1.0.0",
   "description": "MERN server for shop it",
   "main": "server.js",
+  "type": "module",
   "scripts": {
-    "test": "node backend/server.js"
+    "test": "node backend/server.js",
+    "server": "nodemon backend/server",
+    "data:import": "node backend/seeder",
+    "data:destroy": "node backend/seeder -d",
+    "client": "npm start --prefix Frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "MANJEET DHAYAL",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.2"
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^14.3.2",
+    "express": "^4.17.2",
+    "mongoose": "^6.1.8"
+  },
+  "devDependencies": {
+    "concurrently": "^7.0.0",
+    "nodemon": "^2.0.15"
   }
 }
