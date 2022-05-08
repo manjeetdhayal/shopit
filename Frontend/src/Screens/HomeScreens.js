@@ -1,12 +1,11 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
-import axios from 'axios'
+import axios from "axios";
 
 // import products from "../products";  //know we fetch it from our backend
 import Product from "../components/Product";
 
 const HomeScreen = () => {
-
   const [products, setProducts] = useState([]); //setProducts is the function that will manipulate products
 
   // useEffect( async ( ) => {   // fires when the screen loads or component loads
@@ -15,18 +14,19 @@ const HomeScreen = () => {
 
   //*** we can not make the arrow function async that's why we will make a seperate function  */
 
-    useEffect( ( ) => {   // fires when the screen loads or component loads
-      const fetchProducts = async () => {
-        // const res = await axios.get('/api/products') //now res has a data object assigned to it thus we can access it by res.data 
-        // to make our code cleaner we can destructure it by replacing res with {data}
+  useEffect(() => {
+    // fires when the screen loads or component loads
+    const fetchProducts = async () => {
+      // const res = await axios.get('/api/products') //now res has a data object assigned to it thus we can access it by res.data
+      // to make our code cleaner we can destructure it by replacing res with {data}
 
-        const {data} = await axios.get('/api/products')
+      const { data } = await axios.get("/api/products");
 
-        setProducts(data); 
-      }
+      setProducts(data);
+    };
 
-      fetchProducts(); 
-  }, [])   //second argument is array of dependecies that we want to fire when we useEffect
+    fetchProducts();
+  }, []); //second argument is array of dependecies that we want to fire when we useEffect
 
   return (
     <>
@@ -34,7 +34,7 @@ const HomeScreen = () => {
       <Row>
         {products.map((product) => {
           return (
-            <Col key = {product._id} sm={12} md={6} lg={4} xl={3}>
+            <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
               <h3>
                 <Product product={product} />
               </h3>
