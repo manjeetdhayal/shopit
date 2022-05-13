@@ -14,6 +14,8 @@ await connectDB()
 
 const importData = async () => {
   try {
+
+    //to clear all the db
     await Order.deleteMany()
     await Product.deleteMany()
     await User.deleteMany()
@@ -55,6 +57,7 @@ const destroyData = async () => {
   }
 }
 
+//to get the arguments passed in command line 
 if (process.argv[2] === '-d') {
   destroyData()
 } else {
