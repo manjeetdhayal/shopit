@@ -1,12 +1,17 @@
+//we need to add every reducer inside ours store.js
 import { createStore, combineReducers, applyMiddleware } from "redux";
 //combineReducers to combine different reducers
 // applyMiddleware to apply middleware such as thunk
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { productListReducers } from "./Reducers/productReducers";
+import {
+  productDetailReducer,
+  productListReducers,
+} from "./Reducers/productReducers";
 
 const reducer = combineReducers({
   productList: productListReducers,
+  productDetails: productDetailReducer,
 });
 
 const initialState = {}; //something that we want to load when reducers load
