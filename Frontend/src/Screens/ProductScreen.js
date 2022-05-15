@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Row, Col, Image, ListGroup, Card, Button } from "react-bootstrap";
+import {
+  Row,
+  Col,
+  Image,
+  ListGroup,
+  Card,
+  Button,
+  Form,
+} from "react-bootstrap";
 
 import Rating from "../components/rating";
 // import products from "../products";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 
 import { useDispatch, useSelector } from "react-redux";
 import { listProductDetails } from "../actions/productActions";
@@ -14,25 +21,8 @@ import Message from "../components/Message";
 
 const ProductScreen = () => {
   const { id } = useParams(); //to get the params id or present at the params object params.id
-  // console.log(id);
 
-  // const product = products.find( (p) => p._id === id );
-  // console.log(product)
-
-  // const [product, setProduct] = useState([]);
-
-  // useEffect( ( ) => {   // fires when the screen loads or component loads
-  //     const fetchProduct = async () => {
-  //       // const res = await axios.get('/api/products') //now res has a data object assigned to it thus we can access it by res.data
-  //       // to make our code cleaner we can destructure it by replacing res with {data}
-
-  //       const {data} = await axios.get(`/api/products/${id}`);
-
-  //       setProduct(data);
-  //     }
-
-  //     fetchProduct();
-  // }, [])
+  const [qty, setQty] = useState(0);
 
   //we use dispatch and useSelector to get product details
   const dispatch = useDispatch();
@@ -95,6 +85,28 @@ const ProductScreen = () => {
                     </Col>
                   </Row>
                 </ListGroup.Item>
+                {product.countInStock > 0 && (
+                  <ListGroup.Item>
+                    <Row>
+                      <Col> Qty</Col>
+                      <Col>
+                        <Form.Control
+                          as="select"
+                          value={qty}
+                          onChange={(e) => {
+                            setQty(e.target.value);
+                          }}
+                        >
+                          {[...Array(product.countInStock).keys()].map((x) => (
+                            <option key={x + 1} value={x + 1}>
+                              {x + 1}
+                            </option>
+                          ))}
+                        </Form.Control>
+                      </Col>
+                    </Row>
+                  </ListGroup.Item>
+                )}
                 <ListGroup.Item>
                   <Button
                     className="btn-block"
