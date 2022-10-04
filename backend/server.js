@@ -25,6 +25,21 @@ app.get("/", (req, res) => {
   res.send("API is running...");
 });
 
+
+// test for setting up backend routes -------------
+
+// app.get("/api/products", (req, res) => {
+//   res.json(products); 
+// })
+
+// app.get("/api/products/:id", (req, res) => {
+//   const pro = products.find((p) => p._id === req.params.id); 
+//   res.json(pro); 
+// })
+
+//-----------
+
+
 app.use("/api/products", productRoutes); //we are mounting the api end point i.e, now for all api calls it will take /api/products/ as default i.e, it is basically mounting it
 
 //below are moved to backend/Routes/productRoutes.js for better clearity and understandibility
@@ -46,7 +61,7 @@ app.use(notFound);
 //custom error handler COMPLEX CONCEPT
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5500;
 
 app.listen(
   PORT,

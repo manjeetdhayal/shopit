@@ -12,7 +12,7 @@ import {
 
 import Rating from "../components/rating";
 // import products from "../products";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import { listProductDetails } from "../actions/productActions";
@@ -21,6 +21,8 @@ import Message from "../components/Message";
 
 const ProductScreen = () => {
   const { id } = useParams(); //to get the params id or present at the params object params.id
+
+  let navigate = useNavigate(); //we use to navitate, in react-router-v6 instead of histoy.push we use navigate 
 
   const [qty, setQty] = useState(0);
 
@@ -35,9 +37,14 @@ const ProductScreen = () => {
     dispatch(listProductDetails(id));
   }, [dispatch, id]);
 
+  //to handle the add to cart button 
+  const addToCartHandler = () => {
+    navigate(`/cart/${id}?qty=${qty}`); 
+  }
+
   return (
     <div>
-      <Link to="/goback" className="btn btn-light my-3">
+      <Link to="/" className="btn btn-light my-3">
         {" "}
         Go Back{" "}
       </Link>
@@ -112,6 +119,7 @@ const ProductScreen = () => {
                     className="btn-block"
                     type="button"
                     disabled={product.countInStock === 0}
+                    onClick={addToCartHandler} //call function addToCartHandler on clicking add to cart 
                   >
                     Add to cart
                   </Button>

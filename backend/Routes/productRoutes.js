@@ -4,6 +4,13 @@ const router = express.Router();
 
 import Product from "../models/productmodel.js";
 
+//to search for a particular ObjectId from the mongoDB database we need to use 
+// finidById(ObjectId(id)); 
+// where id = `${req.params.id}`
+
+import {ObjectId} from 'mongodb'
+
+
 // let's add a header for each routes
 // @desc Fetch all products
 // @route GET /api/products
@@ -26,7 +33,8 @@ router.get(
 router.get(
   "/:id",
   expressAsyncHandler(async (req, res) => {
-    const product = await Product.findById(req.params.id);
+    var id = `${req.params.id}`; 
+    const product = await Product.findById(ObjectId(id));
 
     if (product) {
       res.json(product);

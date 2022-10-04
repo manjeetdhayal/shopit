@@ -9,9 +9,12 @@ import {
   productListReducers,
 } from "./Reducers/productReducers";
 
+import { cartReducer } from "./Reducers/cardReducers";
+
 const reducer = combineReducers({
   productList: productListReducers,
   productDetails: productDetailReducer,
+  cart: cartReducer,
 });
 
 const initialState = {}; //something that we want to load when reducers load
