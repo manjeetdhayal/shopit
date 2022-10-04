@@ -9,7 +9,7 @@ import {
   productListReducers,
 } from "./Reducers/productReducers";
 
-import { cartReducer } from "./Reducers/cardReducers";
+import { cartReducer } from "./Reducers/cartReducers";
 
 const reducer = combineReducers({
   productList: productListReducers,
@@ -17,7 +17,12 @@ const reducer = combineReducers({
   cart: cartReducer,
 });
 
-const initialState = {}; //something that we want to load when reducers load
+//we fetch saved cart items from local storage if present else emtpy object; if present change to parse to JS object before storing for that use JSON.parse(json_object)
+const cartItemsFromStorage = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [] 
+
+const initialState = {
+  cart: {cartItems: cartItemsFromStorage }
+}; //something that we want to load when reducers load
 
 const middleware = [thunk];
 

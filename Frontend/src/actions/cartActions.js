@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { CART_ADD_ITEM } from '../constants/cardConstants'
+import { CART_ADD_ITEM } from '../constants/cartConstants'
 
 //async is used with the help of redux thunk that applies middleware and allows us to make it async call 
 export const addToCart = (id, qty) => async(dispatch, getState) => {
